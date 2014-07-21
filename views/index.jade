@@ -11,16 +11,28 @@ block content
                         span(class='icon-bar')
                     a(class='navbar-brand', href='/') OB
                 div(class='collapse navbar-collapse')
-                    ul(class='nav navbar-nav')
+                    form(class='navbar-form navbar-right')
+                        div(class='input-group')
+                            span(class='input-group-addon')
+                                span(class='glyphicon glyphicon-search')
+                            input(type='text', class='form-control', placeholder='Search')
+
+        div(class='container-fluid')
+            div(class='row')
+                div(class='row top-buffer')
+                div(class='col-sm-11 contentArea')
+                    block contentArea
+                div(class='col-sm-1')
+                    ul(class='nav nav-stacked affix')
                         li(class='active')
                             a(href='/')
                                 span(class='glyphicon glyphicon-home')
-                        li
-                            a(href='/about')
-                                span(class='glyphicon glyphicon-info-sign')
-                        li
-                            a(href='/portfolio')
-                                span(class='glyphicon glyphicon-folder-open')
-                        li
-                            a(href='/reader')
-                                span(class='glyphicon glyphicon-book')
+                            li
+                                a(href='/about')
+                                    span(class='glyphicon glyphicon-info-sign')
+                            li
+                                a(href='/portfolio')
+                                    span(class='glyphicon glyphicon-folder-open')
+                            li
+                                a(href='/reader')
+                                    span(class='glyphicon glyphicon-book')

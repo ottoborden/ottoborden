@@ -16,6 +16,15 @@ a {
     color: #00B7FF;
 }
 
+.row > .top-buffer {
+    padding-top: 25px;
+}
+
 .navbar-default {
     opacity: 0.8;
+}
+
+.contentArea {
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
 }

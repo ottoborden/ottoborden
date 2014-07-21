@@ -1,0 +1,8 @@
+extends index
+
+block contentArea
+    each story in stories
+        p #{story.title}
+        p #{story.date}
+        p #{story.subtitle}
+        p #{story.text}
