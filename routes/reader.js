@@ -29,13 +29,8 @@ router.get('/', function(req, res) {
                 var stream = this,
                     item;
                 while(item = stream.read()) {
-                    var t = _.chain(item.description)
-                        .invoke("split", "<p>");
-                    //console.log(t);
-                    console.log(S(item.description).stripTags().s);
                     var story = {
-                        'title': S(item.title).stripTags().s,
-                        'description': S(item.description).stripTags().s,
+                        'title': S(S(item.title).stripTags().s).decodeHTMLEntities().s,
                         'summary': S(S(item.summary).stripTags().s).decodeHTMLEntities().s,
                         'date': moment(item.date).toString(),
                         'link': item.link,

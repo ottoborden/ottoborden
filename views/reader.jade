@@ -1,12 +1,22 @@
 extends index
 
-block contentArea
+block append head
+    link(rel='stylesheet', href='/stylesheets/reader.css')
+
+block content
     h1 Good Reading
 
     each story in stories
         div(class='well storyOverview')
             h3 #{story.title}
-            p #[em #{story.date}]
+            p #[em #{story.date}] -
+                a(target='_blank', href='#{story.fromUrl}') #{story.from}
             p #{story.summary}
-            p #{story.description}
-            a(href='#') Read More
+            a(href='#{story.link}') Read More
+
+    div(class='modal', ng-controller='ReaderController', ng-hide='showReaderModal()')
+        p #{test}
+
+    block append scripts
+        script(src='/javascripts/controllers/ReaderController.js')
+        script(src='/javascripts/services/ReaderService.js')
