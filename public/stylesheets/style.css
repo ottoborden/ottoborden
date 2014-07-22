@@ -25,6 +25,13 @@ a {
 }
 
 .contentArea {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0);
     color: #ffffff;
+}
+
+.contentArea > .storyOverview {
+    margin-left: 35px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #D1E751;
+    color: #000000;
 }

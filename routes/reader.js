@@ -3,16 +3,58 @@
 */
 var express = require('express');
 var router = express.Router();
+var FeedParser = require('feedparser');
+var http = require('http');
+var S = require('string');
+var moment = require('moment');
+var _ = require('lodash');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-    res.render('reader', {stories: [{
-            'title': 'Story One',
-            'date': 'July 21 2014',
-            'subtitle': 'What ever happened to all the fun in the world?',
-            'text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec turpis scelerisque, porttitor ante a, ultrices purus. Sed vel vestibulum purus. Nulla facilisi. Cras id volutpat velit. Pellentesque gravida nisl vitae dolor adipiscing rhoncus. Pellentesque dapibus facilisis cursus. Vivamus sagittis mauris eget porttitor consectetur. Praesent tincidunt porttitor sodales.'
-        }
-    ]});
+    'use strict';
+    var feedMeta,
+        stories = [];
+    // http://www.kurzweilai.net/news/feed/atom
+    http.get('http://www.kurzweilai.net/news/feed/atom', function(r) {
+        r.pipe(new FeedParser({
+            'normalize': true
+        }))
+            .on('error', function(err) {
+                console.log('Failed to retrieve RSS.');
+            })
+            .on('meta', function(meta) {
+                feedMeta = meta;
+            })
+            .on('readable', function() {
+                var stream = this,
+                    item;
+                while(item = stream.read()) {
+                    var t = _.chain(item.description)
+                        .invoke("split", "<p>");
+                    //console.log(t);
+                    console.log(S(item.description).stripTags().s);
+                    var story = {
+                        'title': S(item.title).stripTags().s,
+                        'description': S(item.description).stripTags().s,
+                        'summary': S(S(item.summary).stripTags().s).decodeHTMLEntities().s,
+                        'date': moment(item.date).toString(),
+                        'link': item.link,
+                        'guid': item.guid,
+                        'author': item.author,
+                        'comments': item.comments,
+                        'from': item.meta.title,
+                        'fromDescription': item.meta.description,
+                        'fromUrl': item.meta.link
+                    }
+                    stories.push(story);
+                }
+            })
+            .on('end', function() {
+                // Assemble feed meta data?
+                res.render('reader', {stories: stories});
+            });
+    });
+    //res.render('reader', {stories: stories});
 });
 
 module.exports = router;

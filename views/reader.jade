@@ -1,8 +1,12 @@
 extends index
 
 block contentArea
+    h1 Good Reading
+
     each story in stories
-        p #{story.title}
-        p #{story.date}
-        p #{story.subtitle}
-        p #{story.text}
+        div(class='well storyOverview')
+            h3 #{story.title}
+            p #[em #{story.date}]
+            p #{story.summary}
+            p #{story.description}
+            a(href='#') Read More
