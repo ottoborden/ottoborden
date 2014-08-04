@@ -14,7 +14,6 @@ router.get('/', function(req, res) {
     'use strict';
     var feedMeta,
         stories = [];
-    // http://www.kurzweilai.net/news/feed/atom
     http.get('http://www.kurzweilai.net/news/feed/atom', function(r) {
         r.pipe(new FeedParser({
             'normalize': true
@@ -47,6 +46,7 @@ router.get('/', function(req, res) {
             .on('end', function() {
                 // Assemble feed meta data?
                 res.render('reader', {stories: stories});
+                //res.send(stories);
             });
     });
     //res.render('reader', {stories: stories});

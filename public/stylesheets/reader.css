@@ -1,11 +1,12 @@
-.content {
-    background: rgba(0, 0, 0, 0);
-    color: #ffffff;
-}
-
 .content > .storyOverview {
     margin-left: 35px;
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid #D1E751;
     color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+    .modal-dialog {
+        width: 1200px;
+    }
 }
