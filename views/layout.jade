@@ -5,8 +5,6 @@ html(lang='en', ng-app='myApp')
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
         link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap-theme.min.css')
-        script(src='/angular/angular.min.js') // - Angular is loaded here so that only need controller.js/service.js files are loaded in via Jade without raising a ReferenceError (ctrl asks for angular before loaded)
-        script(src='/angular-route/angular-route.min.js')
     body
         block navbar
 
@@ -14,6 +12,14 @@ html(lang='en', ng-app='myApp')
 
         block scripts
             script(src='/jquery/dist/jquery.min.js')
+            script(src='/angular/angular.min.js')
+            script(src='/angular-route/angular-route.min.js')
             script(src='/bootstrap/dist/js/bootstrap.min.js')
             script(src='/javascripts/app.js')
             script(src='/javascripts/appRoutes.js')
+            script(src='/javascripts/features/reader/ReaderModule.js')
+            script(src='/javascripts/features/reader/ReaderController.js')
+            script(src='/javascripts/features/reader/ReaderDirective.js')
+            script(src='/javascripts/features/about/AboutModule.js')
+            script(src='/javascripts/features/about/AboutController.js')
+            script(src='/javascripts/features/about/AboutDirective.js')

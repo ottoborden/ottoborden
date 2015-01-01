@@ -1,6 +1,3 @@
-/*
-    Infinite scroll and expand (or overlay) stories into current page
-*/
 var express = require('express');
 var router = express.Router();
 var FeedParser = require('feedparser');
@@ -9,8 +6,7 @@ var S = require('string');
 var moment = require('moment');
 var _ = require('lodash');
 
-/* GET users listing. */
-router.get('/', function(req, res) {
+router.get('/reader', function(req, res) {
     'use strict';
     var feedMeta,
         stories = [];
@@ -20,6 +16,7 @@ router.get('/', function(req, res) {
         }))
             .on('error', function(err) {
                 console.log('Failed to retrieve RSS.');
+                res.json(err);
             })
             .on('meta', function(meta) {
                 feedMeta = meta;
@@ -40,17 +37,16 @@ router.get('/', function(req, res) {
                         'from': item.meta.title,
                         'fromDescription': item.meta.description,
                         'fromUrl': item.meta.link
-                    }
+                    };
                     stories.push(story);
                 }
             })
             .on('end', function() {
                 // Assemble feed meta data?
-                res.render('reader', {stories: stories});
-                //res.send(stories);
+                //res.render('reader', {stories: stories});
+                res.json(stories);
             });
     });
-    res.render('reader', {stories: stories});
 });
 
 module.exports = router;

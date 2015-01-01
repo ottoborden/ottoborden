@@ -1,10 +1,16 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('myApp').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
 
         // home page
+        .when('/', {
+            templateUrl: 'index.html',
+            controller: 'MainController'
+        })
+
+        // reader
         .when('/reader', {
-            templateUrl: '/views/reader.jade',
-            controller: 'ReaderController.js'
+            templateUrl: 'Reader.html',
+            controller: 'ReaderController'
         });
 
     $locationProvider.html5Mode(true);

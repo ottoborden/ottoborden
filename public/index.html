@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Otto Borden - Cutting Teeth</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/reader.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button><a href="/" class="navbar-brand">OB</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <form class="navbar-form navbar-right">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        <input type="text" placeholder="Search" class="form-control">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row top-buffer"></div>
+            <div class="col-sm-11 content">
+                <div ng-view></div>
+            </div>
+            <div class="col-sm-1">
+                <ul class="nav nav-stacked affix">
+                    <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span></a>
+                    <li><a href="/about"><span class="glyphicon glyphicon-info-sign"></span></a>
+                    </li>
+                    <li><a href="/portfolio"><span class="glyphicon glyphicon-folder-open"></span></a>
+                    </li>
+                    <li><a href="/reader"><span class="glyphicon glyphicon-book"></span></a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/angular/angular.min.js"></script>
+<script src="/angular-route/angular-route.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/app.js"></script>
+<script src="/javascripts/appRoutes.js"></script>
+<script src="/javascripts/features/reader/ReaderModule.js"></script>
+<script src="/javascripts/features/reader/ReaderController.js"></script>
+<script src="/javascripts/features/reader/ReaderDirective.js"></script>
+<script src="/javascripts/features/about/AboutModule.js"></script>
+<script src="/javascripts/features/about/AboutController.js"></script>
+<script src="/javascripts/features/about/AboutDirective.js"></script>
+<script>
+    $('a.activateModal').on('click', function(e) {
+        var src = $(this).attr('data-src');
+        $(".modal-body iframe").attr({
+            'src': src,
+            'location': src
+        });
+    });
+</script>
+</body>
+</html>

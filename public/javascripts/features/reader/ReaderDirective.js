@@ -1,7 +1,7 @@
 angular.module('Reader')
-    .directive(function() { 'use strict';
+    .directive('readerDirective', function() { 'use strict';
         return  {
             restrict: 'E',
-            templateUrl: '/javascripts/features/reader/Reader.html'
+            templateUrl: 'Reader.html'
         }
     });

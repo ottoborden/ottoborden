@@ -9,7 +9,7 @@ block content
     each story in stories
         div(class='well storyOverview')
             h3 #{story.title}
-            p #[em #{story.date}] -
+            p #[em #{story.date}] -&nbsp;
                 a(href='#{story.fromUrl}', target='_blank') #{story.from}
             p #{story.summary}
             a(class='activateModal', href='', data-toggle='modal', data-target='#myModal', data-src='#{story.link}') Read More
@@ -25,10 +25,6 @@ block content
                     iframe(src='', style='zoom:0.60', frameborder='0', height='550', width='99.6%') sdgdsf
 
 block append scripts
-    script(src='/javascripts/features/reader/ReaderModule.js')
-    script(src='/javascripts/features/reader/ReaderController.js')
-    script(src='/javascripts/features/reader/ReaderDirective.js')
-
     script.
         $('a.activateModal').on('click', function(e) {
             var src = $(this).attr('data-src');
